@@ -151,19 +151,14 @@ require_once __DIR__ . '/includes/header.php';
         <p>Explore some of the premium applications, websites, and business systems we have engineered.</p>
       </div>
 
-      <!-- Filters -->
-      <div class="portfolio-filters">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="websites">Websites</button>
-        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-        <button class="filter-btn" data-filter="saas">SaaS Products</button>
-        <button class="filter-btn" data-filter="management">Management Systems</button>
-      </div>
-
-      <!-- Grid -->
-      <div class="portfolio-grid">
-        <?php foreach ($config['projects'] as $project): ?>
-        <div class="portfolio-card" data-category="<?php echo htmlspecialchars($project['category_slug']); ?>">
+      <!-- Slideshow Container -->
+      <div class="portfolio-slideshow" style="display: flex; gap: 2rem; overflow-x: auto; padding-bottom: 2rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+        <?php 
+        // Take first 4 projects for the slideshow
+        $featured_projects = array_slice($config['projects'], 0, 4);
+        foreach ($featured_projects as $project): 
+        ?>
+        <div class="portfolio-card" style="min-width: 350px; flex: 0 0 auto; scroll-snap-align: start;">
           <div class="portfolio-img-wrapper">
             <img src="<?php echo htmlspecialchars($project['image']); ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
           </div>
@@ -171,7 +166,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="portfolio-meta">
               <span class="portfolio-category"><?php echo htmlspecialchars($project['category_name']); ?></span>
             </div>
-            <a href="#" class="portfolio-title"><?php echo htmlspecialchars($project['title']); ?></a>
+            <a href="portfolio.php" class="portfolio-title"><?php echo htmlspecialchars($project['title']); ?></a>
             <p class="portfolio-desc"><?php echo htmlspecialchars($project['desc']); ?></p>
             <div class="portfolio-tech">
               <?php foreach ($project['tech'] as $techItem): ?>
@@ -181,6 +176,10 @@ require_once __DIR__ . '/includes/header.php';
           </div>
         </div>
         <?php endforeach; ?>
+      </div>
+      
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="portfolio.php" class="btn btn-secondary">View All Projects</a>
       </div>
     </div>
   </section>

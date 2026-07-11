@@ -33,10 +33,10 @@
         <div class="footer-column">
           <h4>Portfolio</h4>
           <ul class="footer-links">
-            <li><a href="#portfolio">Apex E-Commerce</a></li>
-            <li><a href="#portfolio">Zenith Healthcare</a></li>
-            <li><a href="#portfolio">Aura Reservation</a></li>
-            <li><a href="#portfolio">Novus Analytics</a></li>
+            <li><a href="portfolio.php">Apex E-Commerce</a></li>
+            <li><a href="portfolio.php">Zenith Healthcare</a></li>
+            <li><a href="portfolio.php">Aura Reservation</a></li>
+            <li><a href="portfolio.php">Novus Analytics</a></li>
           </ul>
         </div>
 
