@@ -3,11 +3,43 @@
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Lucide Icons
-  lucide.createIcons();
+  /* --- Theme Toggle --- */
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  
+  // Set initial icon based on applied theme
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    themeIcon.setAttribute('data-lucide', 'sun');
+  } else {
+    themeIcon.setAttribute('data-lucide', 'moon');
+  }
 
   // Register GSAP ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  // Initialize Lucide Icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeIcon.setAttribute('data-lucide', 'moon');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIcon.setAttribute('data-lucide', 'sun');
+      }
+      lucide.createIcons();
+    });
+  }
 
   /* --- Navigation & Header Effects --- */
   const header = document.getElementById('header');

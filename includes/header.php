@@ -22,6 +22,14 @@
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Theme Check to prevent FOUC -->
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
 </head>
 <body>
 
@@ -53,6 +61,9 @@
       </nav>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
+        <button id="theme-toggle" class="btn btn-secondary" style="padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Toggle Theme">
+          <i data-lucide="moon" id="theme-icon"></i>
+        </button>
         <a href="#contact" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Start Project</a>
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
           <i data-lucide="menu"></i>
