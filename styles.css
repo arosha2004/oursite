@@ -37,6 +37,45 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--bg-primary);
+/* ==========================================
+   NEXYTIC PREMIUM DESIGN SYSTEM & STYLESHEET
+   ========================================== */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* --- Root Variables --- */
+:root {
+  --bg-primary: #030712;
+  --bg-secondary: #0b0f19;
+  --bg-card: rgba(17, 24, 39, 0.45);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(139, 92, 246, 0.35);
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-gradient: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+  --accent-gradient-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.5) 0%, rgba(139, 92, 246, 0.5) 100%);
+  --text-main: #f3f4f6;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --font-sans: 'Inter', sans-serif;
+  --font-title: 'Space Grotesk', sans-serif;
+  --max-width: 1280px;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* --- Base & Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
   color: var(--text-main);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -649,89 +688,92 @@ section {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem 0 2rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.timeline::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple), rgba(255,255,255,0.05));
-  transform: translateX(-50%);
+  top: 45px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-blue), var(--accent-purple), rgba(255,255,255,0.05));
+  z-index: 1;
 }
 
 .timeline-item {
   position: relative;
-  width: 50%;
-  padding: 0 3rem;
-  margin-bottom: 4rem;
-}
-
-.timeline-item:last-child {
+  flex: 1;
+  min-width: 280px;
+  padding: 0;
   margin-bottom: 0;
-}
-
-.timeline-item:nth-child(odd) {
-  left: 0;
-  text-align: right;
-}
-
-.timeline-item:nth-child(even) {
-  left: 50%;
+  text-align: center;
+  scroll-snap-align: start;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .timeline-dot {
-  position: absolute;
-  top: 10px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background: var(--bg-primary);
   border: 4px solid var(--accent-purple);
   box-shadow: 0 0 15px var(--accent-purple);
+  margin-top: 35px;
+  margin-bottom: 25px;
+  position: relative;
   z-index: 10;
 }
 
-.timeline-item:nth-child(odd) .timeline-dot {
-  right: -10px;
-}
-
-.timeline-item:nth-child(even) .timeline-dot {
-  left: -10px;
-}
-
 .timeline-number {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: var(--font-title);
-  font-size: 2.5rem;
-  font-weight: 700;
-  opacity: 0.15;
-  margin-bottom: 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  opacity: 0.05;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .timeline-content {
-  display: inline-block;
-  text-align: left;
-}
-
-.timeline-item:nth-child(odd) .timeline-content {
-  text-align: right;
-}
-
-.timeline-item:nth-child(even) .timeline-content {
-  text-align: left;
+  display: block;
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .timeline-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  color: #fff;
 }
 
 .timeline-content p {
   color: var(--text-muted);
   font-size: 0.95rem;
-  max-width: 400px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* --- Portfolio --- */
@@ -1511,25 +1553,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .timeline::before {
-    left: 20px;
-  }
-  .timeline-item {
-    width: 100%;
-    padding-left: 50px;
-    padding-right: 0;
-    margin-bottom: 3rem;
-  }
-  .timeline-item:nth-child(odd) {
-    text-align: left;
-  }
-  .timeline-item:nth-child(odd) .timeline-dot,
-  .timeline-item:nth-child(even) .timeline-dot {
-    left: 10px;
-  }
-  .timeline-item:nth-child(odd) .timeline-content {
-    text-align: left;
-  }
+
   .contact-form {
     grid-template-columns: 1fr;
   }
@@ -1546,3 +1570,5 @@ footer {
     text-align: center;
   }
 }
+
+

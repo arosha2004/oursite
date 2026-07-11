@@ -257,22 +257,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Process Timeline Animating Steps
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  timelineItems.forEach((item, index) => {
-    const isOdd = index % 2 === 0;
-    gsap.from(item, {
-      x: isOdd ? -60 : 60,
+  // Process Timeline Animating Steps & Auto-Scroll
+  const timelineContainer = document.querySelector('.timeline');
+  if (timelineContainer) {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    // Animate items in
+    gsap.from(timelineItems, {
+      y: 40,
       opacity: 0,
       duration: 0.8,
+      stagger: 0.15,
       ease: 'power2.out',
       scrollTrigger: {
-        trigger: item,
-        start: 'top 85%',
+        trigger: '.process',
+        start: 'top 80%',
         toggleActions: 'play none none none'
       }
     });
-  });
+
+    // Auto-scroll functionality
+    let scrollInterval;
+    const startAutoScroll = () => {
+      scrollInterval = setInterval(() => {
+        if (!timelineContainer) return;
+        
+        // Check if we are at the end of the scrollable area
+        // Added small tolerance (5px) for fractional pixel values
+        if (Math.ceil(timelineContainer.scrollLeft + timelineContainer.clientWidth) >= timelineContainer.scrollWidth - 5) {
+          timelineContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Find the width of a single item to scroll by
+          const firstItem = timelineItems[0];
+          if (firstItem) {
+            // Include flex gap approximately (2rem = ~32px)
+            const itemWidth = firstItem.offsetWidth + 32;
+            timelineContainer.scrollBy({ left: itemWidth, behavior: 'smooth' });
+          }
+        }
+      }, 3500); // 3.5 seconds per slide
+    };
+
+    // Pause auto-scroll on hover or touch
+    timelineContainer.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+    timelineContainer.addEventListener('mouseleave', startAutoScroll);
+    timelineContainer.addEventListener('touchstart', () => clearInterval(scrollInterval), { passive: true });
+    timelineContainer.addEventListener('touchend', startAutoScroll, { passive: true });
+
+    // Initiate auto-scroll
+    startAutoScroll();
+  }
 
   // Portfolio Stagger Reveal
   gsap.from('.portfolio-card', {
