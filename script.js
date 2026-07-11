@@ -247,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Services Stagger Reveal
   gsap.from('.service-card', {
     y: 50,
-    opacity: 0,
     duration: 0.8,
     stagger: 0.1,
     ease: 'power2.out',

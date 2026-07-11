@@ -42,13 +42,13 @@
       
       <nav id="nav-menu">
         <ul>
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="index.php#services">Services</a></li>
+          <li><a href="index.php#portfolio">Portfolio</a></li>
+          <li><a href="index.php#pricing">Pricing</a></li>
+          <li><a href="index.php#faq">FAQ</a></li>
+          <li><a href="index.php#contact">Contact</a></li>
         </ul>
       </nav>
 

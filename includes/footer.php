@@ -13,10 +13,10 @@
         <div class="footer-column">
           <h4>Company</h4>
           <ul class="footer-links">
-            <li><a href="#about">About Nexytic</a></li>
+            <li><a href="about.php">About Nexytic</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.php#contact">Contact</a></li>
           </ul>
         </div>
 
